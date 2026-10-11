@@ -1,0 +1,16 @@
+# Look/verify artefacts (regenerable via look.mjs)
+hairline-*-look.png
+hairline-*-blind.png
+hairline-*-motion.png
+figures/hairline-*-look.png
+figures/hairline-*-blind.png
+figures/hairline-*-motion.png
+
+# Regenerated figure HTML (build.mjs output from figures/*.js)
+# Keep them: index.html loads them directly via <iframe src="figures/hairline-*.html">
+# So we DO commit figures/hairline-*.html — only drop the root copies
+/hairline-*.html
+
+.DS_Store
+node_modules/
+*.log

@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iconlab · crypto &amp; fintech</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%2308090a'/%3E%3Cpath d='M6 15V9M10 17V7M14 14V10M18 16V8' stroke='%23fafafa' stroke-width='1.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<style>
+  :root { color-scheme: light; --ground: #ffffff; --ink: #232327; --muted: #6f6f78; --line: #e0e0e4; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { color-scheme: dark; --ground: #08090a; --ink: #d0d6e0; --muted: #8a8c95; --line: #29292d; }
+  }
+  :root[data-theme="dark"] { color-scheme: dark; --ground: #08090a; --ink: #d0d6e0; --muted: #8a8c95; --line: #29292d; }
+  :root[data-theme="light"] { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; padding: 28px 20px 56px;
+    background: var(--ground); color: var(--ink);
+    font: 13px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono, h2, .rules, .open, .brand, .theme { font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+  header, .grid, .intro, footer { max-width: 1160px; margin-left: auto; margin-right: auto; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .brand { font-size: 13px; }
+  .brand span { color: var(--muted); margin-left: 10px; }
+  .theme {
+    height: 30px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px;
+    background: transparent; color: var(--ink); cursor: pointer;
+  }
+  .intro { margin: 22px 0 26px; color: var(--muted); text-wrap: pretty; }
+  .intro b { color: var(--ink); font-weight: 500; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 24px; }
+  .card { min-width: 0; }
+  .plate { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--ground); }
+  iframe { display: block; width: 100%; height: 560px; border: 0; background: var(--ground); }
+  .meta { display: flex; align-items: baseline; gap: 12px; padding: 12px 2px 0; }
+  h2 { margin: 0; font-size: 12px; font-weight: 500; }
+  .mean { margin: 6px 2px 0; color: var(--muted); text-wrap: pretty; }
+  .rules { margin: 6px 2px 0; color: var(--muted); }
+  .exports { display: flex; gap: 2px; margin-left: auto; }
+  .exports button {
+    border: 0; background: none; padding: 2px 7px; border-radius: 6px; cursor: pointer;
+    font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+  .exports button:hover { color: var(--ink); }
+  .exports button:disabled { cursor: default; opacity: 0.45; }
+  .open { margin-left: 6px; color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .open:hover { color: var(--ink); text-decoration: underline; }
+  footer { margin-top: 40px; color: var(--muted); }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">iconlab<span>crypto &amp; fintech</span></div>
+  <button class="theme" id="theme" type="button" aria-label="Switch between the light and the dark theme">theme</button>
+</header>
+
+<p class="intro">Fourteen figures on the <b>hairline</b> engine: isometric line drawings that answer the pointer.
+Move over one to see it respond, drag <b>intensity</b> to push it, press <b>play</b> for the tour.
+Each card exports <b>png · gif · mp4</b> of its play, or copies the figure's code.</p>
+
+<div class="grid">
+  <article class="card" id="candles">
+    <div class="plate">
+      <iframe src="figures/hairline-candles.html" title="candles" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>candles</h2><a class="open" href="figures/hairline-candles.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A skyline of candles: the ones near the pointer rise and fall off with distance.</p>
+    <p class="rules">rules 01 · 03 · 05 · 09 &nbsp;·&nbsp; tour 3 stops</p>
+  </article>
+
+  <article class="card" id="wallet">
+    <div class="plate">
+      <iframe src="figures/hairline-wallet.html" title="wallet" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>wallet</h2><a class="open" href="figures/hairline-wallet.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">Four cards in a fold: the one under the pointer stands up, and its neighbours lean away.</p>
+    <p class="rules">rules 01 · 02 · 05 · 09 &nbsp;·&nbsp; tour 3 stops</p>
+  </article>
+
+  <article class="card" id="swap">
+    <div class="plate">
+      <iframe src="figures/hairline-swap.html" title="swap" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>swap</h2><a class="open" href="figures/hairline-swap.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">Two coin stacks trade ends along their lanes; the pointer runs the exchange.</p>
+    <p class="rules">rules 01 · 03 · 05 · 08 &nbsp;·&nbsp; tour 3 stops</p>
+  </article>
+
+  <article class="card" id="card">
+    <div class="plate">
+      <iframe src="figures/hairline-card.html" title="card" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>card</h2><a class="open" href="figures/hairline-card.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A card in four layers: the pointer pulls them apart and picks one.</p>
+    <p class="rules">rules 01 · 02 · 03 · 08 &nbsp;·&nbsp; tour 3 stops</p>
+  </article>
+
+  <article class="card" id="slip">
+    <div class="plate">
+      <iframe src="figures/hairline-slip.html" title="slip" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>slip</h2><a class="open" href="figures/hairline-slip.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A receipt feeds from a terminal; the pointer's y scrubs its length.</p>
+    <p class="rules">rules 01 · 03 · 04 · 05 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="multicoin">
+    <div class="plate">
+      <iframe src="figures/hairline-multicoin.html" title="multicoin" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>multicoin</h2><a class="open" href="figures/hairline-multicoin.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">Five coins in a row: the pick bounces up and a wave runs out along its neighbours.</p>
+    <p class="rules">rules 01 · 02 · 05 · 09 &nbsp;·&nbsp; tour 3 stops</p>
+  </article>
+
+  <article class="card" id="qr">
+    <div class="plate">
+      <iframe src="figures/hairline-qr.html" title="qr" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>qr</h2><a class="open" href="figures/hairline-qr.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A QR plate shimmers under the pointer; the slider sets the shimmer's radius.</p>
+    <p class="rules">rules 01 · 03 · 05 · 07 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="basket">
+    <div class="plate">
+      <iframe src="figures/hairline-basket.html" title="basket" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>basket</h2><a class="open" href="figures/hairline-basket.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">Coins rain into a basket; the slider caps how high a stack may grow.</p>
+    <p class="rules">rules 01 · 03 · 05 · 07 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="coin">
+    <div class="plate">
+      <iframe src="figures/hairline-coin.html" title="coin" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>coin</h2><a class="open" href="figures/hairline-coin.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A coin turns on its plinth; the pointer's x scrubs the face you see.</p>
+    <p class="rules">rules 01 · 03 · 05 · 08 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="plane">
+    <div class="plate">
+      <iframe src="figures/hairline-plane.html" title="plane" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>plane</h2><a class="open" href="figures/hairline-plane.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A paper plane circles a dashed eight: the crossing dives it, the right lobe lifts it, the airspace slows it.</p>
+    <p class="rules">rules 01 · 05 · 07 · 08 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="rig">
+    <div class="plate">
+      <iframe src="figures/hairline-rig.html" title="rig" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>rig</h2><a class="open" href="figures/hairline-rig.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A mining rig hums: hover the vent to triple the fan, the lid to hash, the case to nudge it.</p>
+    <p class="rules">rules 01 · 05 · 07 · 08 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="gamepad">
+    <div class="plate">
+      <iframe src="figures/hairline-gamepad.html" title="gamepad" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>gamepad</h2><a class="open" href="figures/hairline-gamepad.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">An Xbox-style pad: the left stick leans with the pointer, the d-pad cross and face buttons press down.</p>
+    <p class="rules">rules 01 · 03 · 04 · 05 · 08 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="ox">
+    <div class="plate">
+      <iframe src="figures/hairline-ox.html" title="ox" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>ox</h2><a class="open" href="figures/hairline-ox.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">The OX mark: a ring O struck through, and a crossing X, turning together with the pointer.</p>
+    <p class="rules">rules 01 · 03 · 04 · 05 · 08 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
+  <article class="card" id="market">
+    <div class="plate">
+      <iframe src="figures/hairline-market.html" title="market" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>market</h2><a class="open" href="figures/hairline-market.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">A coin slides across a QR plate and a receipt prints out; the pointer's x scrubs the payment.</p>
+    <p class="rules">rules 01 · 03 · 05 · 07 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+</div>
+
+<footer class="mono">engine: <a href="https://www.npmjs.com/package/@lucasmarkes/hairline" target="_blank" rel="noopener">@lucasmarkes/hairline</a> · figures drawn with the hairline-create skill · validated + looked</footer>
+
+<script>
+  const root = document.documentElement, KEY = "iconlab-theme";
+  const saved = localStorage.getItem(KEY);
+  if (saved) root.dataset.theme = saved;
+  const frames = [...document.querySelectorAll("iframe")];
+
+  function sync(f) {
+    try {
+      const d = f.contentDocument;
+      if (!d) return;
+      if (root.dataset.theme) d.documentElement.dataset.theme = root.dataset.theme;
+      else delete d.documentElement.dataset.theme;
+      f.style.height = "0px";
+      f.style.height = d.documentElement.scrollHeight + "px";
+    } catch {}
+  }
+  frames.forEach((f) => {
+    f.addEventListener("load", () => {
+      sync(f);
+      try { new ResizeObserver(() => sync(f)).observe(f.contentDocument.body); } catch {}
+    });
+  });
+  addEventListener("resize", () => frames.forEach(sync));
+
+  document.getElementById("theme").addEventListener("click", () => {
+    const next = root.dataset.theme === "dark" || (!root.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches) ? "light" : "dark";
+    root.dataset.theme = next;
+    localStorage.setItem(KEY, next);
+    frames.forEach(sync);
+  });
+</script>
+
+<script>
+(() => {
+  const KEYS = ["plate", "hi", "edge", "mid", "lo"];
+  const DRAW_CSS =
+    "svg path,svg polygon,svg ellipse,svg line{fill:var(--hl-plate);stroke:var(--hl-mid);stroke-width:var(--hl-sw);vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}" +
+    "svg .nf{fill:none}svg .fo{stroke:none}" +
+    "svg .sil{stroke:var(--hl-edge)}svg .hi{stroke:var(--hl-hi)}svg .lo{stroke:var(--hl-lo)}" +
+    "svg .dash{stroke-dasharray:1 3}" +
+    "svg .dot{stroke:none;fill:var(--hl-hi)}svg .dot.m{fill:var(--hl-edge)}svg .dot.off{fill:var(--hl-lo)}" +
+    "svg .ghost path{fill:none;stroke:var(--hl-mid)}";
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  function open(f) {
+    const w = f.contentWindow, d = f.contentDocument;
+    if (!w || !d || !w.hairline) return null;
+    return { w, stage: d.querySelector("[data-hairline]"), svg: d.querySelector("[data-hairline]>svg") };
+  }
+
+  function snap(svg, stage, w, h) {
+    const cs = getComputedStyle(stage);
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("width", w);
+    clone.setAttribute("height", h);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const st = clone.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "style");
+    st.textContent =
+      "svg{" + KEYS.map((k) => "--hl-" + k + ":" + cs.getPropertyValue("--hl-" + k).trim() + ";").join("") +
+      "--hl-sw:" + (cs.getPropertyValue("--hl-sw").trim() || "0.9") + ";}" + DRAW_CSS;
+    clone.insertBefore(st, clone.firstChild);
+    return URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(clone)], { type: "image/svg+xml" }));
+  }
+
+  async function paint(svg, stage, ctx, w, h) {
+    const url = snap(svg, stage, w, h);
+    const img = new Image();
+    img.src = url;
+    try {
+      await img.decode();
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--ground").trim() || "#ffffff";
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  function board(w, h, read) {
+    const c = document.createElement("canvas");
+    c.width = w; c.height = h;
+    c.style.cssText = "position:fixed;left:-99999px;top:0";
+    document.body.append(c);
+    return { c, x: c.getContext("2d", read ? { willReadFrequently: true } : undefined), done: () => c.remove() };
+  }
+
+  function play(f) {
+    const w = f.contentWindow, d = f.contentDocument;
+    if (w.hairline.playing) return;
+    d.getElementById("play").click();
+  }
+
+  function rest(f) {
+    const w = f.contentWindow, d = f.contentDocument;
+    if (w.hairline.playing) {
+      w.hairline.playing.stop();
+      w.hairline.playing = null;
+    }
+    w.hairline.onStop = null;
+    const btn = d.getElementById("play");
+    if (btn) btn.setAttribute("aria-pressed", "false");
+  }
+
+  function firstStop(f) {
+    const w = f.contentWindow;
+    return new Promise((res) => {
+      if (w.hairline.playing) { w.hairline.onStop = null; return void wait(900).then(res); }
+      let hit = false;
+      w.hairline.onStop = (i) => { if (!hit && i === 0) { hit = true; res(); } };
+      play(f);
+      setTimeout(() => { if (!hit) { hit = true; res(); } }, 6000);
+    });
+  }
+
+  function save(blob, file) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = file;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+
+  function lzw(px, minCode) {
+    const clear = 1 << minCode, eoi = clear + 1;
+    const out = [];
+    let cur = 0, bits = 0, code = minCode + 1;
+    const emit = (v) => {
+      cur |= v << bits;
+      bits += code;
+      while (bits >= 8) { out.push(cur & 255); cur >>>= 8; bits -= 8; }
+    };
+    emit(clear);
+    let dict = new Map(), next = eoi + 1, prefix = px[0];
+    for (let i = 1; i < px.length; i++) {
+      const c = px[i], k = prefix * 256 + c;
+      if (dict.has(k)) { prefix = dict.get(k); continue; }
+      emit(prefix);
+      if (next < 4096) {
+        dict.set(k, next++);
+        if (next === 1 << code && code < 12) code++;
+      } else {
+        emit(clear);
+        dict = new Map();
+        next = eoi + 1;
+        code = minCode + 1;
+      }
+      prefix = c;
+    }
+    emit(prefix);
+    emit(eoi);
+    if (bits > 0) out.push(cur & 255);
+    return out;
+  }
+
+  function gif(frames, w, h, delayCs) {
+    const hist = new Map();
+    for (const f of frames) for (let i = 0; i < f.length; i += 4) {
+      const k = (f[i] << 16) | (f[i + 1] << 8) | f[i + 2];
+      hist.set(k, (hist.get(k) || 0) + 1);
+    }
+    const pal = [...hist.entries()].sort((a, b) => b[1] - a[1]).slice(0, 256).map((e) => e[0]);
+    while (pal.length < 256) pal.push(pal[pal.length - 1] || 0);
+    const map = new Map();
+    pal.forEach((c, i) => map.set(c, i));
+    const out = [];
+    const byte = (b) => out.push(b & 255);
+    const word = (v) => { byte(v); byte(v >> 8); };
+    const str = (s) => { for (let i = 0; i < s.length; i++) byte(s.charCodeAt(i)); };
+    str("GIF89a");
+    word(w); word(h);
+    byte(0xF7); byte(0); byte(0);
+    for (const c of pal) { byte(c >> 16); byte((c >> 8) & 255); byte(c & 255); }
+    byte(0x21); byte(0xFF); byte(0x0B); str("NETSCAPE2.0"); byte(3); byte(1); word(0);
+    const idx = new Uint8Array(w * h);
+    for (const f of frames) {
+      for (let p = 0, q = 0; q < idx.length; p += 4, q++) {
+        idx[q] = map.get((f[p] << 16) | (f[p + 1] << 8) | f[p + 2]) || 0;
+      }
+      byte(0x21); byte(0xF9); byte(4); byte(0); word(delayCs); byte(0); byte(0);
+      byte(0x2C); word(0); word(0); word(w); word(h); byte(0);
+      byte(8);
+      const data = lzw(idx, 8);
+      for (let i = 0; i < data.length; i += 255) {
+        const n = Math.min(255, data.length - i);
+        byte(n);
+        for (let j = 0; j < n; j++) byte(data[i + j]);
+      }
+      byte(0);
+    }
+    byte(0x3B);
+    return new Blob([new Uint8Array(out)], { type: "image/gif" });
+  }
+
+  async function copy(f, name) {
+    const res = await fetch("figures/" + name + ".js");
+    if (!res.ok) throw new Error("no source");
+    const text = await res.text();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try { await navigator.clipboard.writeText(text); return; } catch {}
+    }
+    const t = document.createElement("textarea");
+    t.value = text;
+    t.style.cssText = "position:fixed;left:-99999px";
+    document.body.append(t);
+    t.select();
+    if (!document.execCommand("copy")) throw new Error("copy failed");
+    t.remove();
+  }
+
+  async function grab(f, name, kind) {
+    const live = open(f);
+    if (!live) throw new Error("figure not loaded");
+    const { svg, stage } = live;
+    if (kind === "png") {
+      const b = board(1200, 960);
+      try {
+        await paint(svg, stage, b.x, 1200, 960);
+        save(await new Promise((r) => b.c.toBlob(r, "image/png")), name + ".png");
+      } finally { b.done(); }
+    } else if (kind === "gif") {
+      const W = 640, H = 512, FPS = 12, MS = 2000;
+      const b = board(W, H, true);
+      try {
+        await firstStop(f);
+        const frames = [], t0 = performance.now();
+        while (performance.now() - t0 < MS) {
+          await paint(svg, stage, b.x, W, H);
+          frames.push(b.x.getImageData(0, 0, W, H).data.slice());
+          await wait(1000 / FPS);
+        }
+        save(gif(frames, W, H, Math.max(2, Math.round(100 / FPS))), name + ".gif");
+      } finally { rest(f); b.done(); }
+    } else if (kind === "mp4") {
+      const W = 800, H = 640;
+      const types = ["video/mp4;codecs=avc1.42E01E", "video/mp4", "video/webm;codecs=vp9", "video/webm"];
+      const mime = types.find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t));
+      if (!mime) throw new Error("no recorder");
+      const b = board(W, H);
+      try {
+        const rec = new MediaRecorder(b.c.captureStream(30), { mimeType: mime, videoBitsPerSecond: 6e6 });
+        const parts = [];
+        rec.ondataavailable = (e) => { if (e.data.size) parts.push(e.data); };
+        const stopped = new Promise((r) => { rec.onstop = r; });
+        await firstStop(f);
+        rec.start();
+        const t0 = performance.now();
+        while (performance.now() - t0 < 2600) {
+          await paint(svg, stage, b.x, W, H);
+          await wait(1000 / 30);
+        }
+        rec.stop();
+        await stopped;
+        save(new Blob(parts, { type: mime.split(";")[0] }), name + (mime.includes("mp4") ? ".mp4" : ".webm"));
+      } finally { rest(f); b.done(); }
+    } else {
+      await copy(f, name);
+    }
+  }
+
+  for (const card of document.querySelectorAll(".card")) {
+    const f = card.querySelector("iframe");
+    const name = f.title;
+    const box = document.createElement("div");
+    box.className = "exports";
+    for (const kind of ["png", "gif", "mp4", "code"]) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = kind;
+      b.addEventListener("click", async () => {
+        if (box.dataset.busy) return;
+        box.dataset.busy = "1";
+        b.disabled = true;
+        b.textContent = "…";
+        try {
+          await grab(f, name, kind);
+          b.textContent = kind === "code" ? "copied" : "saved";
+        } catch (e) {
+          console.error(name, kind, e);
+          b.textContent = "✕";
+        } finally {
+          delete box.dataset.busy;
+          b.disabled = false;
+          setTimeout(() => { b.textContent = kind; }, 1400);
+        }
+      });
+      box.append(b);
+    }
+    card.querySelector(".meta").insertBefore(box, card.querySelector(".open"));
+  }
+})();
+</script>
+</body>
+</html>
