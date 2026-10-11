@@ -876,9 +876,9 @@ var HL = (() => {
 </script>
 <script type="module" id="hl-figure">
 /**
- * Market: a coin stands on its edge and rolls across a QR plate toward a
- * receipt that prints out in front. The pointer's x scrubs the payment: the
- * coin travels from one edge of the plate to the other (rolling, its face
+ * Market: a coin stands on a QR plate and rolls across it toward a receipt
+ * that prints out in front. The pointer's x scrubs the payment: the coin
+ * travels from one edge of the plate to the other (rolling, its face
  * turning as it goes) and the receipt lengthens. The slider is the longest
  * receipt.
  *
@@ -892,10 +892,10 @@ const {
   mk, place, pointer, put, register, disposer, solid, unproj,
 } = HL;
 
-const PX = 22, PY = 15, PZ = 2.5, PR = 3.5;
-const CR = 7, CT = 4.5;
-const RW = 10, RY0 = 22, RL0 = 5;
-const X0 = 16, X1 = -14;
+const PX = 23, PY = 15, PZ = 2.5, PR = 4;
+const CR = 8, CT = 5.5;
+const RW = 11, RY0 = 23, RL0 = 6;
+const X0 = 17, X1 = -15;
 const TH = Array.from({ length: 48 }, (_, k) => k * Math.PI / 24);
 const ROWS = [3, 6.5, 10, 15, 20, 26, 32, 38];
 const CELL = 5.5;
@@ -949,25 +949,29 @@ function mount({ stage, svg, read }, value) {
   const recSheet = mk("path", { class: "sil" }, g);
   const recRows = mk("path", { class: "nf lo" }, g);
 
-  const restP = 0.5;
+  const restP = 0.33;
   const sp = spring(restP);
   let drawn = NaN;
 
+  /** The coin at payment p: k-side face ring of radius r0, centre at (cx, CR, z). */
+  const coinAt = (ph, k, cx, r0, th) => {
+    const s = Math.sin(ph), c = Math.cos(ph), co = Math.cos(th);
+    return P(cx - r0 * co * s + (CT / 2) * k * c, r0 * co * c + (CT / 2) * k * s, PZ + CR + r0 * Math.sin(th));
+  };
+  const coinFaces = (ph, cx) => [
+    TH.map((th) => coinAt(ph, 1, cx, CR, th)),
+    TH.map((th) => coinAt(ph, -1, cx, CR, th)),
+  ];
+
   const draw = (p, L) => {
     const cx = X0 + p * (X1 - X0);
-    const ph = p * Math.PI * 2;
-    const s = Math.sin(ph), c = Math.cos(ph);
-    const side = (k) => TH.map((th) => {
-      const co = Math.cos(th);
-      return P(cx + (CT / 2) * k * c, CR * co, PZ + CR + (CT / 2) * k * s + CR * Math.sin(th) * 0 + CR * 0);
-    });
-    const f = side(1), b = side(-1);
+    const ph = p * Math.PI * 1.5;
+    const [f, b] = coinFaces(ph, cx);
+    const heads = Math.cos(ph) + Math.sin(ph) > 0, k = heads ? 1 : -1;
     coinHull.setAttribute("d", poly(hull(f.concat(b))));
-    const heads = c > 0;
     coinFace.setAttribute("d", poly(heads ? f : b));
-    const zFace = PZ + CR + (heads ? CT / 2 : -CT / 2) * s;
-    coinCrease.setAttribute("d", poly(TH.map((th) => P(cx + (heads ? CT / 2 : -CT / 2) * c, (CR - 2.5) * Math.cos(th), zFace + (CR - 2.5) * Math.sin(th) * 0))));
-    coinRelief.setAttribute("d", poly(TH.map((th) => P(cx + (heads ? CT / 2 : -CT / 2) * c, CR * 0.4 * Math.cos(th), zFace + CR * 0.4 * Math.sin(th) * 0))));
+    coinCrease.setAttribute("d", poly(TH.map((th) => coinAt(ph, k, cx, CR - 2.5, th))));
+    coinRelief.setAttribute("d", poly(TH.map((th) => coinAt(ph, k, cx, CR * 0.45, th))));
 
     recSheet.setAttribute("d", poly([
       P(-RW, RY0, 0.15), P(RW, RY0, 0.15), P(RW, RY0 + L, 0.15), P(-RW, RY0 + L, 0.15),

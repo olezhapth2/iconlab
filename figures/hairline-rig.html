@@ -893,7 +893,7 @@ const {
 } = HL;
 
 const X1 = 30, Y1 = 18, H = 26, RAD = 6;
-const FCX = 6, FCZ = 13, RING = 10.2, RHUB = 2.4, NB = 5, TWIST = 1.35, DEPTH = 7, BLADE = 0.3;
+const FCX = 6, FCZ = 13, RING = 10.2, RHUB = 2.4, NB = 5, TWIST = 1.35, DEPTH = 7, BLADE = 0.42;
 const BASE = 2.4, TAU = Math.PI * 2, SPIN = 7, VENTS = [-11, -4, 3, 10], LIFT = 12;
 const TILT = 3;
 
@@ -952,7 +952,7 @@ function mount({ stage, svg, read }, value) {
       const pts = [];
       for (let i = 0; i <= SPIN; i++) {
         const t = i / SPIN, a = q + k * TAU / NB + TWIST * t;
-        pts.push(at(FCX + DEPTH * BLADE, RHUB + t * (RING * 0.82 - RHUB), a));
+        pts.push(at(FCX + DEPTH * BLADE, RHUB + t * (RING * 0.92 - RHUB), a));
       }
       el.setAttribute("d", open(pts));
     });

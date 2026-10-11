@@ -15,7 +15,7 @@ const {
   disposer, mk, pointer, register, reducedMotion,
 } = HL;
 
-const A = 48, H = 32, L = 22, WING = 11, TH = 1.6, KEEL = 4;
+const A = 48, H = 32, L = 22, WING = 11, TH = 1.6, KEEL = 6.5;
 const BASE = 0.9, BANK = rad(15), GAIN = 24, REST = 1;
 const DIVE = 12, LOW = 6;
 const lem = (u) => {
@@ -30,10 +30,10 @@ function mount({ stage, svg, read }, value) {
   /** The dart's planform, and its keel folded down under the belly with a kink. */
   const DART = [[L, 0], [-0.55 * L, WING], [-0.2 * L, 0], [-0.55 * L, -WING]];
   const KEELF = [
-    [0.25 * L, 0, -TH / 2],
-    [-0.2 * L, 0, -TH / 2],
-    [-0.3 * L, 0.8, -TH / 2 - KEEL * 0.45],
-    [-0.1 * L, 0, -TH / 2 - KEEL],
+    [0.3 * L, 0, -TH / 2],
+    [-0.25 * L, 0, -TH / 2],
+    [-0.35 * L, 0.9, -TH / 2 - KEEL * 0.5],
+    [-0.15 * L, 0, -TH / 2 - KEEL],
   ];
   const pose = (u, z) => {
     const p = lem(u), q = lem(u + 0.01), r = lem(u + 0.02);

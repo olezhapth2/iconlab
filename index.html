@@ -180,12 +180,21 @@ Each card exports <b>png · gif · mp4</b> of its play, or copies the figure's c
     <p class="rules">rules 01 · 03 · 04 · 05 · 08 &nbsp;·&nbsp; tour 4 stops</p>
   </article>
 
+  <article class="card" id="oxsphere">
+    <div class="plate">
+      <iframe src="figures/hairline-oxsphere.html" title="oxsphere" loading="lazy"></iframe>
+    </div>
+    <div class="meta"><h2>oxsphere</h2><a class="open" href="figures/hairline-oxsphere.html" target="_blank" rel="noopener">open ↗</a></div>
+    <p class="mean">The OX mark on a sphere: O and X turn together through almost a full revolution.</p>
+    <p class="rules">rules 01 · 03 · 04 · 05 · 08 &nbsp;·&nbsp; tour 4 stops</p>
+  </article>
+
   <article class="card" id="market">
     <div class="plate">
       <iframe src="figures/hairline-market.html" title="market" loading="lazy"></iframe>
     </div>
     <div class="meta"><h2>market</h2><a class="open" href="figures/hairline-market.html" target="_blank" rel="noopener">open ↗</a></div>
-    <p class="mean">A coin slides across a QR plate and a receipt prints out; the pointer's x scrubs the payment.</p>
+    <p class="mean">A coin rolls across a QR plate and a receipt prints out; the pointer's x scrubs the payment.</p>
     <p class="rules">rules 01 · 03 · 05 · 07 &nbsp;·&nbsp; tour 4 stops</p>
   </article>
 </div>
@@ -347,15 +356,27 @@ Each card exports <b>png · gif · mp4</b> of its play, or copies the figure's c
   }
 
   function gif(frames, w, h, delayCs) {
+    const base = frames[0];
     const hist = new Map();
-    for (const f of frames) for (let i = 0; i < f.length; i += 4) {
-      const k = (f[i] << 16) | (f[i + 1] << 8) | f[i + 2];
+    for (let i = 0; i < base.length; i += 4) {
+      const k = (base[i] << 16) | (base[i + 1] << 8) | base[i + 2];
       hist.set(k, (hist.get(k) || 0) + 1);
     }
     const pal = [...hist.entries()].sort((a, b) => b[1] - a[1]).slice(0, 256).map((e) => e[0]);
-    while (pal.length < 256) pal.push(pal[pal.length - 1] || 0);
+    while (pal.length < 256) pal.push(0xffffff);
     const map = new Map();
     pal.forEach((c, i) => map.set(c, i));
+    const nearest = (k) => {
+      if (map.has(k)) return map.get(k);
+      const r = k >> 16, g = (k >> 8) & 255, b = k & 255;
+      let best = 0, bd = 1e9;
+      for (let i = 0; i < pal.length; i++) {
+        const c = pal[i], dr = (c >> 16) - r, dg = ((c >> 8) & 255) - g, db = (c & 255) - b;
+        const d = dr * dr + dg * dg + db * db;
+        if (d < bd) { bd = d; best = i; }
+      }
+      return best;
+    };
     const out = [];
     const byte = (b) => out.push(b & 255);
     const word = (v) => { byte(v); byte(v >> 8); };
@@ -368,7 +389,7 @@ Each card exports <b>png · gif · mp4</b> of its play, or copies the figure's c
     const idx = new Uint8Array(w * h);
     for (const f of frames) {
       for (let p = 0, q = 0; q < idx.length; p += 4, q++) {
-        idx[q] = map.get((f[p] << 16) | (f[p + 1] << 8) | f[p + 2]) || 0;
+        idx[q] = nearest((f[p] << 16) | (f[p + 1] << 8) | f[p + 2]);
       }
       byte(0x21); byte(0xF9); byte(4); byte(0); word(delayCs); byte(0); byte(0);
       byte(0x2C); word(0); word(0); word(w); word(h); byte(0);
@@ -412,7 +433,7 @@ Each card exports <b>png · gif · mp4</b> of its play, or copies the figure's c
         save(await new Promise((r) => b.c.toBlob(r, "image/png")), name + ".png");
       } finally { b.done(); }
     } else if (kind === "gif") {
-      const W = 640, H = 512, FPS = 12, MS = 2000;
+      const W = 640, H = 512, FPS = 10, MS = 3200;
       const b = board(W, H, true);
       try {
         await firstStop(f);
